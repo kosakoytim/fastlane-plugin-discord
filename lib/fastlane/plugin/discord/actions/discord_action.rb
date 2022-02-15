@@ -21,7 +21,7 @@ module Fastlane
           builder.add_embed do |embed|
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
-            embed.url = "https://itunesconnect.apple.com"
+            embed.url = params[:title_url]
             embed.description = params[:desc]
             embed.timestamp = Time.now
           end
@@ -34,7 +34,7 @@ module Fastlane
           builder.add_embed do |embed|
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
-            embed.url = "https://play.google.com/apps/publish"
+            embed.url = params[:title_url]
             embed.description = params[:desc]
             embed.timestamp = Time.now
           end
@@ -79,6 +79,10 @@ module Fastlane
           FastlaneCore::ConfigItem.new(key: :app_name,
                                   env_name: "DISCORD_APP_NAME",
                                description: "Name of the app",
+                                  optional: false,
+                                      type: String),
+          FastlaneCore::ConfigItem.new(key: :title_url,
+                               description: "Title URL",
                                   optional: false,
                                       type: String),
           FastlaneCore::ConfigItem.new(key: :platform,
