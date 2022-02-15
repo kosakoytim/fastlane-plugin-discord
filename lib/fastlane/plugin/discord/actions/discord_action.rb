@@ -23,7 +23,6 @@ module Fastlane
             embed.colour = 0x3c9b00
             embed.url = "https://itunesconnect.apple.com"
             embed.description = "New build uploaded to iTunes Connect with number **#{params[:build_number]}** and version **#{params[:version]}**. "
-            embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "iTunes Connect", url: "https://itunesconnect.apple.com", icon_url: "https://i.imgur.com/68CyCSp.png")
             embed.timestamp = Time.now
           end
         end
@@ -37,7 +36,6 @@ module Fastlane
             embed.colour = 0x3c9b00
             embed.url = "https://play.google.com/apps/publish"
             embed.description = "New build uploaded to Google Play with number **#{params[:build_number]}** and version **#{params[:version]}**. "
-            embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "Google Play", url: "https://play.google.com/apps/publish", icon_url: "https://i.imgur.com/yD82bnG.png")
             embed.timestamp = Time.now
           end
         end
