@@ -34,9 +34,8 @@ module Fastlane
           builder.add_embed do |embed|
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
-            embed.url = "https://play.google.com/apps/publish"
-            embed.description = "New build uploaded to Google Play with number **#{params[:build_number]}** and version **#{params[:version]}**. "
-            embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "Google Play", url: "https://play.google.com/apps/publish", icon_url: "https://i.imgur.com/yD82bnG.png")
+            embed.url = params[:title_url]
+            embed.description = params[:desc]
             embed.timestamp = Time.now
           end
         end
@@ -91,7 +90,7 @@ module Fastlane
                                description: "Which app store the app has deployed",
                                   optional: true,
                                       type: String,
-                             default_value: 'ios')
+                             default_value: 'android')
         ]
       end
 
