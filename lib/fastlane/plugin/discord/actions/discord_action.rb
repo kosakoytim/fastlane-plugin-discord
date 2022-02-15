@@ -21,9 +21,8 @@ module Fastlane
           builder.add_embed do |embed|
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
-            embed.url = "https://itunesconnect.apple.com"
-            embed.description = "New build uploaded to iTunes Connect with number **#{params[:build_number]}** and version **#{params[:version]}**. "
-            embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "iTunes Connect", url: "https://itunesconnect.apple.com", icon_url: "https://i.imgur.com/68CyCSp.png")
+            embed.url = params[:title_url]
+            embed.description = params[:desc]
             embed.timestamp = Time.now
           end
         end
@@ -66,13 +65,21 @@ module Fastlane
                                description: "Discord Webhook URL",
                                   optional: false,
                                       type: String),
+          FastlaneCore::ConfigItem.new(key: :desc,
+                               description: "Description",
+                                  optional: false,
+                                      type: String),
+          FastlaneCore::ConfigItem.new(key: :title_url,
+                               description: "Title URL",
+                                  optional: false,
+                                      type: String),
           FastlaneCore::ConfigItem.new(key: :build_number,
                                description: "New build number",
-                                  optional: false,
+                                  optional: true,
                                       type: Integer),
           FastlaneCore::ConfigItem.new(key: :version,
                                 description: "Version of the build",
-                                  optional: false,
+                                  optional: true,
                                       type: String),
           FastlaneCore::ConfigItem.new(key: :app_name,
                                   env_name: "DISCORD_APP_NAME",
@@ -84,7 +91,7 @@ module Fastlane
                                description: "Which app store the app has deployed",
                                   optional: true,
                                       type: String,
-                             default_value: 'android')
+                             default_value: 'ios')
         ]
       end
 
