@@ -22,7 +22,7 @@ module Fastlane
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
             embed.url = "https://itunesconnect.apple.com"
-            embed.description = "New build uploaded to iTunes Connect with number **#{params[:build_number]}** and version **#{params[:version]}**. "
+            embed.description = params[:desc]
             embed.timestamp = Time.now
           end
         end
@@ -35,7 +35,7 @@ module Fastlane
             embed.title = params[:app_name]
             embed.colour = 0x3c9b00
             embed.url = "https://play.google.com/apps/publish"
-            embed.description = "New build uploaded to Google Play with number **#{params[:build_number]}** and version **#{params[:version]}**. "
+            embed.description = params[:desc]
             embed.timestamp = Time.now
           end
         end
@@ -62,6 +62,10 @@ module Fastlane
         [
           FastlaneCore::ConfigItem.new(key: :url,
                                description: "Discord Webhook URL",
+                                  optional: false,
+                                      type: String),
+          FastlaneCore::ConfigItem.new(key: :desc,
+                               description: "Description",
                                   optional: false,
                                       type: String),
           FastlaneCore::ConfigItem.new(key: :build_number,
